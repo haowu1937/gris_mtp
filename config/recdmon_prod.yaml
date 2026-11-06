@@ -1,0 +1,10 @@
+# RecDMoN recursive-clustering SID defaults (production).
+# Flat keys; values translate to main_gensid.py CLI args. Rename per your
+# naming conventions.
+sid_model: recdmon
+graph_type: adjacent_cooc_prod
+recursive_factor: 8
+recursive_levels: 4
+recursive_epochs: 100
+max_dense_nodes: 100000
+skip_n_last: 0

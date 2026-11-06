@@ -1,0 +1,45 @@
+# RQ-VAE SID training defaults (production, GAE_qwen flows).
+# Flat keys; values translate to main_gensid.py CLI args. Rename this file
+# per your naming conventions.
+sid_model: rqvae
+graph_signal: true
+convolution_type: APPNP  # S2GR
+graph_type: adjacent_cooc_prod
+train_batch_size: 512
+eval_batch_size: 128
+lr: 0.001
+weight_decay: 0.0001
+epochs: 1000
+eval_step: 10
+alpha: 0.01
+beta: 0.0001
+quant_loss_weight: 1.0
+layers: [1024, 512]
+e_dim: 32
+num_emb_list: [256, 256, 256, 256]
+n_clusters: 256
+use_edge_weight: true
+lognorm_weights: true
+n_propagations: 10
+max_dense_nodes: 100000
+disable_vq_init: true
+disable_sk: true
+device: npu
+skip_n_last: 0
+filter_col: null
+
+# Graph augmentation
+# graph_augmentation: true
+# hops: [0, 1]
+# probs: [0.5, 0.5]
+
+# Edge reconstruction loss
+# use_edge_reconstruction_loss: true
+# num_anchors: 16
+
+# Spectral vectors
+# use_spectral_vectors: true
+
+# Cluster labels
+# cluster_labels_path: "./results/mincut_runs/RecDMoN/service_dis_GR_recall_ulan_preprocess/20260728/tran_orc_to_parquet_irc_preprocessed_2_only_train_20261027/mincut_runs/RecDMoN_seed24/graph_hierarchy_labels.json"
+# alpha_graph_cluster: 0.1

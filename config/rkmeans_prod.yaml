@@ -1,0 +1,2 @@
+sid_model: rkmeans  # hierarchical_rkmeans
+num_emb_list: [256, 256, 256, 256]

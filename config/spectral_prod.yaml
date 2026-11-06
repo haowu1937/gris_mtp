@@ -1,0 +1,10 @@
+# Recursive-spectral clustering SID defaults (production).
+# Flat keys; values translate to main_gensid.py CLI args. Rename per your
+# naming conventions.
+sid_model: spectral
+graph_type: adjacent_cooc_prod
+recursive_factor: 8
+recursive_levels: 3
+recursive_epochs: 100
+max_dense_nodes: 10000
+skip_n_last: 0

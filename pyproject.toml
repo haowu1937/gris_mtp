@@ -1,0 +1,122 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "GrIS"
+version = "0.1.0"
+description = "Graph-Informed Semantic IDs (GrIS Framework): Balancing Semantic and Collaborative Signals"
+readme = "README.md"
+license = {text = "NC-ND"}
+requires-python = ">=3.11,<3.12"
+authors = [
+    {name = "Your Name", email = "your.email@example.com"}
+]
+keywords = [
+    "recommendation-systems",
+    "graph-neural-networks",
+    "semantic-ids",
+    "deep-learning",
+    "pytorch"
+]
+
+dependencies = [
+    "torch>=2.6.0",
+    "torch-geometric>=2.6.0",
+    "numpy>=1.24.0",
+    "pandas>=2.2.0",
+    "pyarrow>=14.0.0",
+    "PyYAML>=6.0.2",
+    "polars",
+    "scipy",
+    "scikit-learn>=1.5.0",
+    # "transformers",
+    # "tokenizers",
+    # "sentence-transformers",
+    # "huggingface-hub",
+    # "datasets",
+    # "accelerate",
+    "tqdm",
+    "tensorboard",
+    # "k-means-constrained==0.9.0",
+]
+
+[project.optional-dependencies]
+faiss = [
+    "faiss-cpu>=1.7,<1.12",  # to verify, but recent versions (1.15) fails on MTP with torch==2.6.0
+]
+# pyg_lib, torch_cluster
+
+[dependency-groups]
+dev = [
+    "GrIS[faiss]",
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "ruff~=0.15.0",
+    "pre-commit",
+    # "notebook>=7.0.0",
+    # "ipykernel",
+]
+
+# Note: PyTorch Geometric (torch_geometric, pyg_lib, etc.) requires specific index URLs.
+# Install them separately using:
+# pip install torch_geometric pyg_lib torch_scatter torch_sparse torch_cluster \
+#   -f https://data.pyg.org/whl/torch-2.11.0+cu130.html
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = ["--cov=gensid", "--cov-report=term", "--cov-report=html:htmlcov"]
+
+[tool.coverage.run]
+source = ["gensid"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["gensid*", "scripts*", "utils*"]
+exclude = ["tests*", "genrec*", "docs*", "notebooks*", "cache*", "results*"]
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.format]
+quote-style = "double"
+skip-magic-trailing-comma = false
+line-ending = "lf"
+
+[tool.ruff.lint]
+# select = [
+#     "E",   # pycodestyle errors
+#     "W",   # pycodestyle warnings
+#     "F",   # Pyflakes
+#     "I",   # isort
+#     "N",   # pep8-naming
+#     "UP",  # pyupgrade
+#     "B",   # flake8-bugbear
+#     "SIM", # flake8-simplify
+#     "T20", # flake8-print
+# ]
+ignore = [
+    # "E501", # Line too long (handled by formatter)
+    # "F401", # Unused imports (common in __init__.py or large modules)
+    # "F403", # Star imports
+    # "F405", # Name may be undefined from star imports
+]
+exclude = ["genrec/*"]
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu130" }
+torch_geometric = { index = "pyg-cu130" }
+pyg_lib = { index = "pyg-cu130" }
+torch_scatter = { index = "pyg-cu130" }
+torch_sparse = { index = "pyg-cu130" }
+torch_cluster = { index = "pyg-cu130" }
+
+[[tool.uv.index]]
+name = "pytorch-cu130"
+url = "https://download.pytorch.org/whl/cu130"
+explicit = true
+
+[[tool.uv.index]]
+name = "pyg-cu130"
+url = "https://data.pyg.org/whl/torch-2.11.0+cu130.html"
+explicit = true

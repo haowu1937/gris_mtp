@@ -1,0 +1,9 @@
+# Stacked-DMoN clustering SID defaults (production, mincut flow).
+# Flat keys; values translate to main_gensid.py CLI args. Rename per your
+# naming conventions.
+sid_model: stacked_dmon
+graph_type: adjacent_cooc_prod
+recursive_levels: 3
+epochs: 100
+max_dense_nodes: 10000
+skip_n_last: 0

@@ -1,0 +1,10 @@
+# PQ / OPQ SID defaults (production).
+# Flat keys; values translate to main_gensid.py CLI args.
+# Switch between PQ and OPQ by changing `sid_model` below; override any other
+# argument from the command line (real CLI args win over this file).
+sid_model: faiss_pq  # faiss_opq
+n_subquantizers: 4
+n_bits: 8
+metric_type: l2  # l2 | ip
+# Alternatively derive M and n_bits from num_emb_list (M = len, codebook size = 1 << n_bits):
+# num_emb_list: [256, 256, 256, 256]
